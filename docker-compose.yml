@@ -1,0 +1,16 @@
+services:
+  pdf-backend:
+    build: ./backend
+    volumes:
+      - ./backend:/home/appuser
+    ports:
+      - "8000:8000"
+
+  streamlit-app:
+    build: ./streamlit_app
+    volumes:
+      - ./streamlit_app:/home/appuser
+    ports:
+      - "8501:8501"
+    depends_on:
+      - pdf-backend
